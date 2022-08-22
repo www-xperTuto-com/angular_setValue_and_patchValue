@@ -1,0 +1,34 @@
+<form [formGroup]="tagsForm">
+  WebSite: <input type="text" formControlName="webSite"><br>
+  Tags:
+  <div formArrayName="tags">
+    <div *ngFor="let tag of tags?.controls; let tagIndex=index">
+      <div [formGroupName]="tagIndex">
+        {{tagIndex}}
+        technologie  :
+        <input type="text" formControlName="technologie">
+        nb_tutorials:
+        <input type="text" formControlName="nb_tutorials">
+
+        <button (click)="removeTag(tagIndex)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+    <button type="button" (click)="addTags()">Add</button>
+
+</form>
+
+<button type="button" (click)="setFormControlValue()">Set formControl</button>
+<button type="button" (click)="setFormGroupValue()">Set formGroup</button>
+<button type="button" (click)="setFormArrayValue()">Set formArray</button>
+<br>
+<button type="button" (click)="patchFormControlValue()">Patch formControl</button>
+<button type="button" (click)="patchFormGroupValue()">Patch formGroup</button>
+<button type="button" (click)="patchFormArrayValue()">Patch formArray</button><br>
+
+
+<div>
+  <h3>Form values :</h3>
+  {{ this.tagsForm.getRawValue() | json}}
+</div>
